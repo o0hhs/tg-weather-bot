@@ -14,13 +14,15 @@ import keyboards as k
 import db.requests as r
 
 from db.requests import create_new_user
-
-
 from db.models import async_main
+
+from dotenv import load_dotenv
 
 import asyncio
 
 import logging
+
+import os
 
 class UserState(StatesGroup):
     choosing_city = State()
@@ -28,8 +30,9 @@ class UserState(StatesGroup):
     custom_latitude = State()
     from_main = State()
     
+load_dotenv()
     
-TOKEN = '7717228624:AAERZFQBDT1UQmxp1u4o0QhZ_9Z-7OSrdXk'
+TOKEN=os.getenv('TOKEN')
 bot = Bot(TOKEN)
 dp = Dispatcher()
 
