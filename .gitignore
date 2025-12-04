@@ -12,3 +12,6 @@ app/.env
 
 # Database
 db.sqlite3
+
+# Trash
+citis.py
