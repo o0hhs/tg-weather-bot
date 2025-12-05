@@ -197,52 +197,17 @@ async def send_daily_message(chat_id, user):
                 # Сбрасываем флаг для другого времени
                 sent_messages[2] = False
             
-            # Проверяем время 10:01
-            # elif current_hour == 10 and current_minute == 1 and not sent_messages[2]:
-            #     await send_message(chat_id, user)
-            #     sent_messages[2] = True
-            #     # Сбрасываем флаг для другого времени
-            #     sent_messages[11] = False
-            
             # Сбрасываем флаги в начале нового дня
             if current_hour == 0 and current_minute == 0:
                 sent_messages = {11: False, 2: False}
             
             # Ждем 40 секунд перед следующей проверкой
+            logging.info(f"ждем {sent_messages}")
             await asyncio.sleep(40)
             
         except Exception as e:
             logging.error(f"Ошибка в send_daily_message: {e}")
             await asyncio.sleep(60)
-
-
-# async def send_daily_message(chat_id, user):
-#     weather = await get_weather_forecast(user)
-#     logging.warning(f"Отправка рассылки была запущена, статус пользователя: {await r.get_user_status(user)}.")
-#     while await r.get_user_status(user):
-#         # Получаем текущее время в нужном часовом поясе (например, Москва)
-#         now = datetime.now(pytz.timezone('Asia/Yekaterinburg'))
-#         print(now.time())
-#         target_time = time(hour=11, minute=27)  # Целевое время: 10:00
-#         target_time2 = time(hour=11, minute=2)
-#         # Если текущее время совпадает с целевым — отправляем сообщение
-#         if now.time() == target_time or now.time() == target_time2:
-            
-#             print(now.time())
-#             await bot.send_photo(photo=get(), caption=f"Доброе утро! Сегодня {date.today()}. Прогноз погоды на сегодня: День {weather['max_temp']}℃, Ночь {weather['min_temp']}℃, будет {weather['name']}", chat_id=chat_id)
-#             # Ждем до следующего дня
-#             await asyncio.sleep(86400)  # 24 часа в секундах
-#         else:
-#             print('waiting 20 sec')
-#             # Ждем 1 минуту перед следующей проверкой
-#             await asyncio.sleep(1)
-            
-            
-# async def send_daily_message(chat_id, user):
-#     while await r.get_user_status(user):
-#         #await bot.send_message(text="runin", chat_id=chat_id)
-#         await asyncio.sleep(5)
-            
 
 
 

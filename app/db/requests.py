@@ -1,4 +1,4 @@
-from models import User, Session, City
+from db.models import User, Session, City
 from sqlalchemy import select
 import asyncio
 import json
