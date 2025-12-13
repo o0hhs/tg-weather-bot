@@ -18,9 +18,9 @@ class User(Main):
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False)
     longitude: Mapped[float] = mapped_column(Double, nullable=True)
     latitude: Mapped[float] = mapped_column(Double, nullable=True)
-    time: Mapped[Time] = mapped_column(Time, default=time(10, 0))
-    horoscop: Mapped[bool] = mapped_column(Boolean, default=False)
-    brief_weather_report: Mapped[bool] = mapped_column(Boolean, default=False)
+    # time: Mapped[Time] = mapped_column(Time, default=time(10, 0))
+    # horoscop: Mapped[bool] = mapped_column(Boolean, default=False)
+    # brief_weather_report: Mapped[bool] = mapped_column(Boolean, default=False)
     
 class City(Main):
     __tablename__ = 'cities'

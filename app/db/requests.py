@@ -36,10 +36,10 @@ async def set_coordinates_to_user(user, title_ru=None, longitude=None, latitude=
                 raise Exception
             user.longitude = city.longitude
             user.latitude = city.latitude
-        if longitude is not None:
+        if longitude and latitude is not None:
             user.longitude = longitude
-        elif latitude is not None:
             user.latitude = latitude
+
         await session.commit()
         
 async def get_user_coordinates(user):

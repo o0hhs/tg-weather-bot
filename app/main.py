@@ -93,6 +93,8 @@ async def set_custom_coordinates(message: Message, state: FSMContext):
     await state.set_state(UserState.custom_longitude)
     await message.answer(text="Введите долготу (пример: 82.7893):")
 
+
+
 @dp.message(UserState.custom_longitude)
 async def custom_longitude(message: Message, state: FSMContext):
     logging.warning(f"Ввод широты {message.from_user.username}, {message.from_user.id}")
@@ -122,10 +124,10 @@ async def custom_latitude(message: Message, state: FSMContext):
     
 @dp.message(F.location)
 async def location_handler(message: Message):
-    logging.warning(f"Локация была получена {message.from_user.username}, {message.from_user.id}")
+    logging.warning(f"Локация была получена {message.from_user.username}, {message.from_user.id}, {message.location.latitude}, {message.location.longitude}")
     latitude = message.location.latitude
     longitude = message.location.longitude
-    await r.set_coordinates_to_user(message.from_user.id, None, latitude, longitude)
+    await r.set_coordinates_to_user(message.from_user.id, None, longitude, latitude)
     await send_daily_message(message.chat.id, message.from_user.id)
     await message.answer_photo(photo=get(), caption="Отлично, тогда, мы начинаем!!! Завтра (ну или сегодня просто чуть попозже >3) ты получишь погодную сводку в 8:00 по мск с милой картинкой котика!!!>>3", reply_markup=k.main_kb())    
       
